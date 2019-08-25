@@ -7,11 +7,17 @@ int main()
 	double radiusMinute = 11.25;
 	double radiusHour = 8.25;
 
-	Svg s("test", radius*1.1, radius*1.1);
+	Svg s("test", radius*1.01, radius*1.01);
 	Style st;
 	st.setDoFill(false);
 	st.setDoStroke(true);
-	s.addCircle(0, 0, .5, st);
+	st.setStrokeWidth(.01);
+	st.setDoFill(true);
+	st.setFill(Rgb(255,255,255));
+	s.addCircle(0, 0, radius, st);
+	s.addCircle(0, 0, radiusMinute, st);
+	s.addCircle(0, 0, radiusHour, st);
+	s.addCircle(0, 0, .05, st);
 
 	return 0;
 }

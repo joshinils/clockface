@@ -39,7 +39,7 @@ void Svg::addCircle(double cx, double cy, double r, Style s)
 
 void Svg::addRect(double x, double y, double width, double height, Style s, double rx /* = 0 */, double ry /* = 0 */)
 {
-	_file << std::string("\n") +
+	_file <<
 		"\t<rect "
 		"x=\"" + std::to_string(x) + "\" "
 		"y=\"" + std::to_string(y) + "\" "

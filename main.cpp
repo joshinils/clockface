@@ -3,7 +3,6 @@
 #include "Svg.h"
 #include "Style.h"
 #include <vector>
-#include "main.h"
 #include <iostream>
 #include <cstdlib>
 
@@ -63,6 +62,10 @@ int main()
 {
 	std::srand(0);
 
+	double scale = 100;
+	radius *= scale;
+	radiusMinute*= scale;
+	radiusHour *= scale;
 	Svg s("test", radius*1.01, radius*1.01);
 	Style st;
 

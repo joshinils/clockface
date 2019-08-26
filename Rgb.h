@@ -6,12 +6,13 @@
 
 class Rgb
 {
-private:
-	uint8_t _r;
-	uint8_t _g;
-	uint8_t _b;
 public:
-	Rgb(uint8_t r=0, uint8_t g=0, uint8_t b=0)
+	std::uint8_t _r;
+	std::uint8_t _g;
+	std::uint8_t _b;
+
+public:
+	Rgb(std::uint8_t r=0, std::uint8_t g=0, std::uint8_t b=0)
 		: _r(r), _g(g), _b(b)
 	{ }
 

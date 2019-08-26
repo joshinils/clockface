@@ -2,13 +2,14 @@
 #include <fstream>
 #include "Style.h"
 #include "Rgb.h"
+
 Svg::Svg(std::string fn, double width, double height)
 	: _filename(fn + ".svg"),
 	_file(_filename, std::fstream::out)
 {
 	_file << std::string("<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\" -") + std::to_string(width) + " -" + std::to_string(height) + " " + std::to_string(width*2) + " " + std::to_string(height*2) +" \">\n";
 	Style rectStyle;
-	rectStyle.setFill(Rgb(128,128,128));
+	rectStyle.setFill(Rgb(50, 50, 50));
 	rectStyle.setStroke(Rgb(0,0,0));
 	rectStyle.setStrokeWidth(.1);
 	addRect(-width, -height, width*2, height*2, rectStyle);
@@ -26,7 +27,7 @@ void Svg::addExample()
 		"\t<circle cx=\"5\" cy=\"5\" r=\"4\" stroke=\"green\" stroke-width=\"1\" fill=\"yellow\" />\n");
 }
 
-void Svg::addCircle(double cx, double cy, double r, Style s)
+void Svg::addCircle(double cx, double cy, double r, const Style& s)
 {
 	_file << std::string("\n") +
 	"\t<circle "
@@ -37,7 +38,7 @@ void Svg::addCircle(double cx, double cy, double r, Style s)
 	_file <<"/>\n";
 }
 
-void Svg::addRect(double x, double y, double width, double height, Style s, double rx /* = 0 */, double ry /* = 0 */)
+void Svg::addRect(double x, double y, double width, double height, const Style& s, double rx /* = 0 */, double ry /* = 0 */)
 {
 	_file <<
 		"\t<rect "
@@ -49,5 +50,18 @@ void Svg::addRect(double x, double y, double width, double height, Style s, doub
 		"ry=\"" + std::to_string(ry) + "\" ";
 	_file << s;
 	_file <<"/>\n";
+}
+
+// connects ends
+void Svg::addPolygon(const std::vector<std::pair<double, double>>& p, const Style& s)
+{
+	_file <<
+		"\t<polygon "
+		"points= \"";
+	for (const auto& d : p)
+	{
+		_file << d.first << "," << d.second << " ";
+	}
+	_file << "\" " << s << "/>\n";
 }
 

@@ -21,6 +21,8 @@ private:
 	double _stroke_opacity = 1; // [0,1] default 1
 	double _stroke_width = 1; // length, default 1
 
+	bool _strokeFirst = false;
+
 public:
 	Style();
 	~Style();
@@ -29,10 +31,8 @@ public:
 	void setDoStroke(bool b);
 	void setFill(const Rgb& rgb);
 	void setStroke(const Rgb& rgb);
-	void setStrokeWidth(double w)
-	{
-		_stroke_width = std::max(0.0, std::min(w, 1.0));
-	}
+	void setStrokeWidth(double w);
+	void setDoStrokeFirst(bool b);
 
 	friend std::ostream& operator << (std::ostream& ostr, const Style& style)
 	{
@@ -50,6 +50,10 @@ public:
 		else
 			ostr << "fill=\"none\" ";
 
+		if(style._strokeFirst)
+			ostr << "paint-order=\"stroke\" ";
+		else
+			ostr << "paint-order=\"fill\" ";
 		return ostr;
 	}
 };

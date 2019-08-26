@@ -29,3 +29,14 @@ void Style::setStroke(const Rgb & rgb)
 	_doStroke = true;
 	_stroke = rgb;
 }
+
+void Style::setStrokeWidth(double w)
+{
+	_stroke_width = std::max(0.0, std::min(w, 1.0));
+}
+
+void Style::setDoStrokeFirst(bool b)
+{
+	_strokeFirst = b;
+}
+

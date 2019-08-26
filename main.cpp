@@ -72,13 +72,15 @@ int main()
 	int numPoints = 100;
 
 	double r = radius;
-	double increment = 0;
+	double dist = r/numPoints*M_PI*2;
 	for (size_t i = 0; i < 100; i++)
 	{
 		if(r < .1)
-		break;
-		drawCircleSegments(s, r -= increment, numPoints);
-		increment = r/numPoints*M_PI*2;
+			break;
+		r -= dist;
+		double U = 2*M_PI*r;
+		numPoints = U / dist;
+		drawCircleSegments(s, r, numPoints);
 	}
 
 //	st.setDoStroke(true);
